@@ -1,0 +1,5 @@
+Python: 3.15.2
+Platform: macOS-27.0.1-arm64-arm-64bit-Mach-O
+Sizes: [100, 250, 500]
+Repeats: 7
+Data seed: 42
