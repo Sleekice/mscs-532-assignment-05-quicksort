@@ -8,7 +8,7 @@ November 15, 2026
 
 ## Abstract
 
-This report implements and evaluates deterministic first-element-pivot Quicksort and randomized-pivot Quicksort in Python. Both use recursive two-way partitioning and allocate new lists rather than partitioning in place. Correctness was checked against Python’s sorted() function on seven test inputs for each implementation. Execution time was measured across three input sizes (100, 250, and 500), three input distributions (random, sorted, and reverse-sorted), and seven repetitions per configuration. The deterministic implementation was faster on random inputs but much slower on presorted inputs. At 500 elements, randomized Quicksort was approximately 9.22 times faster on sorted data and 9.52 times faster on reverse-sorted data. The findings are consistent with first-element pivot selection producing quadratic worst-case behavior on monotonic input, while randomization reduces the likelihood of repeated extreme pivots. The results are implementation-specific and should not be generalized to all Quicksort variants.
+This report implements and evaluates deterministic first-element-pivot Quicksort and randomized-pivot Quicksort in Python. Both use recursive two-way partitioning and allocate new lists rather than partitioning in place. Correctness was checked against Python’s sorted() function on seven test inputs for each implementation. Execution time was measured across three input sizes (100, 250, and 500), three input distributions (random, sorted, and reverse-sorted), and seven repetitions per configuration. The deterministic implementation was faster on random inputs but much slower on presorted inputs. At 500 elements, randomized Quicksort was approximately 7.99 times faster on sorted data and 8.57 times faster on reverse-sorted data. The findings are consistent with first-element pivot selection producing quadratic worst-case behavior on monotonic input, while randomization reduces the likelihood of repeated extreme pivots. The results are implementation-specific and should not be generalized to all Quicksort variants.
 
 ## Introduction
 
@@ -32,21 +32,21 @@ Both algorithms were tested in Python 3.15.2 on macOS 27.0.1 (arm64). Input size
 
 ## Results
 
-Table 1 reports observed median execution times. Figure 1 shows the same results graphically. On random inputs, deterministic Quicksort measured faster for each tested size; at n = 500, it took 0.176041 ms versus 0.313291 ms for randomized Quicksort. On sorted input at n = 500, deterministic Quicksort took 2.336375 ms versus 0.253250 ms (approximately 9.22× longer). On reverse-sorted input at n = 500, it took 2.234917 ms versus 0.234709 ms (approximately 9.52× longer).
+Table 1 reports observed median execution times. Figure 1 shows the same results graphically. On random inputs, deterministic Quicksort measured faster for each tested size; at n = 500, it took 0.152375 ms versus 0.267292 ms for randomized Quicksort. On sorted input at n = 500, deterministic Quicksort took 1.934333 ms versus 0.242042 ms (approximately 7.99× longer). On reverse-sorted input at n = 500, it took 2.076167 ms versus 0.242292 ms (approximately 8.57× longer).
 
 **Table 1. Median execution time (ms)**
 
 | Distribution | n | Deterministic (ms) | Randomized (ms) |
 |---|---:|---:|---:|
-| Random | 100 | 0.030500 | 0.061750 |
-| Random | 250 | 0.089875 | 0.175666 |
-| Random | 500 | 0.176041 | 0.313291 |
-| Sorted | 100 | 0.130875 | 0.045750 |
-| Sorted | 250 | 0.700667 | 0.136875 |
-| Sorted | 500 | 2.336375 | 0.253250 |
-| Reverse | 100 | 0.126334 | 0.045875 |
-| Reverse | 250 | 0.770792 | 0.144083 |
-| Reverse | 500 | 2.234917 | 0.234709 |
+| Random | 100 | 0.022958 | 0.046792 |
+| Random | 250 | 0.065250 | 0.122542 |
+| Random | 500 | 0.152375 | 0.267292 |
+| Sorted | 100 | 0.098959 | 0.040667 |
+| Sorted | 250 | 0.519875 | 0.114250 |
+| Sorted | 500 | 1.934333 | 0.242042 |
+| Reverse | 100 | 0.102083 | 0.039000 |
+| Reverse | 250 | 0.584292 | 0.113625 |
+| Reverse | 500 | 2.076167 | 0.242292 |
 
 ![Figure 1. Quicksort timing comparison](results/quicksort_comparison.png)
 
